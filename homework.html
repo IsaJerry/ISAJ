@@ -19,9 +19,9 @@
 			<li><a href="">sad</a></li>
 		</ul>
 	</div>
-	<form method="post" action="https://isaj.netlify.app/upload" enctype="multipart/form-data" class="work">
-		<input type="file" name="fileData">
-		<input type="submit" value="提交">
+	<form method="post"  enctype="multipart/form-data" class="work">
+		<input type="file" id="uploadfile" name="fileData">
+		<input type="button" onclick="upload()" value="提交">
 	</form>
 </body>
 <style>
@@ -67,4 +67,19 @@
 		top: 250px;
 	}
 </style>
+<script>
+	function upload(){
+		var fileobj = document.getElementById("uploadfile").files[0];
+		var filecontor = "./uploadfiles";
+		var from = new FormData();
+		from.append("file",fileobj);
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("post",filecontor,true);
+		xhr.onload = function(){
+			alert("upload complete!");
+		};
+		xhr.send(from);
+	}
+</script>
 </html>
